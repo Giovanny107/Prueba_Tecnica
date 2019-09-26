@@ -1,0 +1,9 @@
+﻿@{ Layout = "_Layout"; ViewBag.Title = "Employees";}
+
+<form class="form-inline" method="post">
+    <div class="form-group mx-sm-3 mb-2">
+        <label for="inputId" class="sr-only">Id employee</label>
+        <input type="text" class="form-control" id="inputIdEmployee" placeholder="Id employee">
+    </div>
+    <button type="submit" class="btn btn-primary mb-2" onclick="location.href = '@Url.Action("GetAllEmployees", "Home")'; return false;">Get Employees</button>
+</form>

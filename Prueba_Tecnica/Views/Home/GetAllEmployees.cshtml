@@ -1,0 +1,46 @@
+﻿@model List<EmployeesDTO>
+@{ Layout = "_Layout"; ViewBag.Title = "Employees";}
+
+<br />
+
+<form class="form-inline" method="post">
+    <div class="form-group mx-sm-3 mb-2">
+        <label for="inputId" class="sr-only">Id employee</label>
+        <input type="text" class="form-control" id="inputIdEmployee" placeholder="Id employee">
+    </div>
+    <button type="submit" class="btn btn-primary mb-2" onclick="location.href = '@Url.Action("GetAllEmployees", "Home", new { id = 1 })'; return false;">Get Employees</button>    
+</form>
+
+<script type="text/javascript">
+    $(function () {
+        $("#send").click(function () {
+            var id = $("#Id").val();
+            updateResult(id);
+            return false;
+        });
+    });
+
+    function updateResult(id) {
+        var url = "@Url.Action("GetAllEmployees", "Home", new { id="param-id" })";
+        url = url.replace("param-id", id);
+        $("#result").load(url);
+    }
+</script>
+
+<br />
+<table class="table table-sm table-striped table-bordered m-2">
+    <thead><tr><th>ID</th><th>Name</th><th>Contract Type</th><th>Role Name</th><th>Role Description</th><th>Hourly Salary</th></tr></thead>
+    <tbody>
+        @foreach (var employees in Model)
+        {
+            <tr>
+                <td>@employees.Id</td>
+                <td>@employees.Name</td>
+                <td>@employees.ContractTypeName</td>
+                <td>@employees.RoleName</td>
+                <td>@employees.RoleDescription</td>
+                <td>@employees.AnnualSalary</td>
+            </tr>
+        }
+    </tbody>
+</table>
